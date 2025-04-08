@@ -27,19 +27,6 @@ Link Web Client: [Here.](https://lulusia.vn/)
 6. System Management Module (Developing)**
 ![Screenshot 2025-04-08 110825](https://github.com/user-attachments/assets/4a01b8a6-5550-4afd-b2cd-5e633de68a34)
 
-## What's Changed
-* update Lipstick modules by @baongoc02 in https://github.com/thannong123zero/Lulusia/pull/1
-* Start Survey Module by @thannong123zero in https://github.com/thannong123zero/Lulusia/pull/2
-* Merge Brand UI Component by @thannong123zero in https://github.com/thannong123zero/Lulusia/pull/3
-* Complete extension component by @thannong123zero in https://github.com/thannong123zero/Lulusia/pull/4
-* Create generate list QRCode by @baongoc02 in https://github.com/thannong123zero/Lulusia/pull/5
-* Modify qr code function by @thannong123zero in https://github.com/thannong123zero/Lulusia/pull/6
-* Update Home Banner at client website by @thannong123zero in https://github.com/thannong123zero/Lulusia/pull/7
-* update banner ui by @thannong123zero in https://github.com/thannong123zero/Lulusia/pull/8
-* update code by @thannong123zero in https://github.com/thannong123zero/Lulusia/pull/9
-
-## New Contributors
-* @baongoc02 made their first contribution in https://github.com/thannong123zero/Lulusia/pull/1
-* @thannong123zero made their first contribution in https://github.com/thannong123zero/Lulusia/pull/2
-
-**Full Changelog**: https://github.com/thannong123zero/Lulusia/commits/Lulusia
+## Contributors
+* @baongoc02
+* @thannong123zero
