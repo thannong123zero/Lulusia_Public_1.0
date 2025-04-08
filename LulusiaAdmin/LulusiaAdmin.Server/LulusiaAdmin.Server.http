@@ -1,0 +1,6 @@
+@LulusiaAdmin.Server_HostAddress = http://localhost:5016
+
+GET {{LulusiaAdmin.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

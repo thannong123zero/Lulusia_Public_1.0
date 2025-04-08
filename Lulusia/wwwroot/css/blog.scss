@@ -1,0 +1,12 @@
+﻿.boxBlog {
+    display: flex;
+    flex-direction: row;
+    
+
+    .avatar {
+        aspect-ratio: 5/3;
+        border: 1px solid #ddd;
+        margin-right: 1rem;
+        overflow: hidden;
+    }
+}

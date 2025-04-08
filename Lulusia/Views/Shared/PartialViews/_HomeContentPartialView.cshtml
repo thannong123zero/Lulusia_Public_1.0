@@ -1,0 +1,152 @@
+﻿@model HomePageViewModel
+<link rel="stylesheet" href="~/css/owlcarousel/owl.carousel.min.css" />
+<link rel="stylesheet" href="~/css/owlcarousel/owl.theme.default.min.css" />
+<script src="~/js/owlcarousel/owl.carousel.min.js" asp-append-version="true"></script>
+<div class="homeContent mb-3">
+    <h1 class="text-32 font-weight-600 mt-3 text-capitalize">@_language.Getkey("latestProducts")</h1>
+    <div id="newProductList" class="owl-carousel owl-theme customCarousel">
+        @for (int i = 0; i < 8; i++)
+        {
+            <div class="item">
+                <div class="coupon text-14">
+                    @_language.Getkey("discount") 10%
+                </div>
+                <div class="addToCart">
+                    <span class="ti-shopping-cart-full"></span>
+                </div>
+                <img src="~/assets/images/christianlouboutin-rougelouboutin-velvet-matte-247x300.jpg" class="showImg w-100" alt="item" />
+                <img src="~/assets/images/christianlouboutin-rougelouboutin-velvet-matte-1-247x300.jpg" class="showImgHover w-100" alt="item" />
+
+                <div class="text-center text-14 font-weight-600 text-color-white bg-dark text-capitalize">
+                    @_language.Getkey("buyNow")
+                </div>
+                <div class="itemInfor">
+                    <p class="font-weight-600 text-16 ">SON GUCCI</p>
+                    <a asp-action="index" asp-controller="productDetails" asp-route-ID="abc">
+                        <p class="nameProduction font-italic">Son Gucci Màu 25 Goldie Red Matte Đỏ Cổ Điển Hot Nhất</p>
+                    </a>
+                    <p><span class="priceOld text-14 font-weight-600"><s>1.999.999VND</s></span> <span class="discount text-14 font-weight-600">999.999VND</span></p>
+                </div>
+            </div>
+        }
+    </div>
+
+    <h1 class="text-32 font-weight-600 mt-3 text-capitalize">@_language.Getkey("popularProducts")</h1>
+    <div id="trendingProductList" class="owl-carousel owl-theme customCarousel">
+        @for (int i = 0; i < 8; i++)
+        {
+            <div class="item">
+                <div class="coupon text-14">
+                    @_language.Getkey("discount") 10%
+                </div>
+                <div class="addToCart">
+                    <span class="ti-shopping-cart-full"></span>
+                </div>
+                <img src="~/assets/images/Son-Christian-Louboutin-Diva-2-247x300.jpg" class="showImgHover w-100" alt="item" />
+                <img src="~/assets/images/Son-Christian-Louboutin-Diva-247x300.jpg" class="showImg w-100" alt="item" />
+                <div class="text-center text-14 font-weight-600 text-color-white bg-dark text-capitalize">
+                    @_language.Getkey("buyNow")
+                </div>
+                <div class="itemInfor">
+                    <p class="font-weight-600 text-16 ">SON GUCCI</p>
+                    <a asp-action="index" asp-controller="productDetails" asp-route-ID="abc">
+                        <p class="nameProduction font-italic">Son Gucci Màu 25 Goldie Red Matte Đỏ Cổ Điển Hot Nhất</p>
+                    </a>
+                    <p><span class="priceOld text-14 font-weight-600"><s>1.999.999VND</s></span> <span class="discount text-14 font-weight-600">999.999VND</span></p>
+                </div>
+            </div>
+        }
+    </div>
+
+    <h1 class="text-32 font-weight-600 mt-3 text-capitalize">@_language.Getkey("discountedProducts")</h1>
+    <div id="promotionalProductList" class="owl-carousel owl-theme customCarousel">
+        @for (int i = 0; i < 8; i++)
+        {
+            <div class="item">
+                <div class="coupon text-14">
+                    @_language.Getkey("discount") 30%
+                </div>
+                <div class="addToCart">
+                    <span class="ti-shopping-cart-full"></span>
+                </div>
+                <img src="~/assets/images/christianlouboutin-rougelouboutin-velvet-matte-1-247x300.jpg" class="showImg w-100" alt="item" />
+                <img src="~/assets/images/christianlouboutin-rougelouboutin-velvet-matte-247x300.jpg" class="showImgHover w-100" alt="item" />
+                <div class="text-center text-14 font-weight-600 text-color-white bg-dark text-capitalize">
+                    @_language.Getkey("buyNow")
+                </div>
+                <div class="itemInfor">
+                    <p class="font-weight-600 text-16 ">SON GUCCI</p>
+                    <a asp-action="index" asp-controller="productDetails" asp-route-ID="abc">
+                        <p class="nameProduction font-italic">Son Gucci Màu 25 Goldie Red Matte Đỏ Cổ Điển Hot Nhất</p>
+                    </a>
+                    <p><span class="priceOld text-14 font-weight-600"><s>1.999.999VND</s></span> <span class="discount text-14 font-weight-600">999.999VND</span></p>
+                </div>
+            </div>
+        }
+    </div>
+    @if(Model.Topics != null){
+        <div class="div-line mt-4"></div>
+        <div class="blog row mt-4 mb-2">
+            @foreach (var item in Model.Topics)
+            {
+                <div class="col-12 col-sm-4">
+                    <a asp-action="Index" asp-controller="Blog" asp-route-topicId="@item.Id" class="text-decoration-none">
+                        <img class="w-100" src="@item.AvatarUrl" />
+                        <div class="text-center text-18 fw-bold text-black">@item.Name</div>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="div-line mt-4"></div>
+    }
+</div>
+<script>
+    $('#newProductList').owlCarousel({
+        margin: 10,
+        loop: false,
+        nav: true,
+        responsive: {
+            0:{
+                items: 2
+            },
+            768: {
+                items: 3
+            },
+            992: {
+                items: 4
+            }
+        }
+    });
+    $('#trendingProductList').owlCarousel({
+        margin: 10,
+        loop: false,
+        nav: true,
+        responsive: {
+            0:{
+                items: 2
+            },
+            768: {
+                items: 3
+            },
+            992: {
+                items: 4
+            }
+        }
+    });
+    $('#promotionalProductList').owlCarousel({
+        margin: 10,
+        loop: false,
+        nav: true,
+        responsive: {
+            0:{
+                items: 2
+            },
+            768: {
+                items: 3
+            },
+            992: {
+                items: 4
+            }
+        }
+    });
+</script>

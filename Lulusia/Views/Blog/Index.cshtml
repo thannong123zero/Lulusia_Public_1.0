@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BlogClientViewModel>
+@{
+    IEnumerable<BlogClientViewModel> latestBlogs = ViewBag.LastestBlogs as IEnumerable<BlogClientViewModel>;
+    ViewData["Title"] = "Blog Page";
+}
+@* <script src="https://cdn.jsdelivr.net/npm/choices.js@11.0.3/public/assets/scripts/choices.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/choices.js@11.0.3/public/assets/styles/choices.min.css" rel="stylesheet"> *@
+<div class="page-container my-4">
+    <div class="row">
+        <div class="col-9 blogContainer">
+            @if(Model!= null){
+                foreach (var item in Model)
+                {
+                    <div class="mb-2">
+                        <a asp-action="Details" asp-controller="Blog" asp-route-id="@item.Id" class="boxBlog text-decoration-none text-black">
+                            <div class="avatar">
+                                <img src="@item.AvatarUrl" />
+                            </div>
+                            <div class="infor">
+                                <h3>@item.Subject</h3>
+                                <p>
+                                    @item.Description
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-3">
+            <h4>Danh Muc</h4>
+            <div class="is-divider"></div>
+            <select class="form-select mb-2" asp-items="@ViewBag.Topics">
+                <option selected>Select topic</option>
+            </select>
+            <div class="is-divider"></div>
+            @if (latestBlogs != null)
+            {
+                <h4>Bai viet moi nhat</h4>
+                @foreach (var item in latestBlogs)
+                {
+                    <a asp-action="Details" asp-controller="Blog" asp-route-id="@item.Id" class="d-block text-black fw-bold text-decoration-none border-bottom mb-2">@item.Subject</a>
+                }
+            }
+        </div>
+    </div>
+</div>

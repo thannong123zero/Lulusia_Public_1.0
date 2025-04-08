@@ -1,0 +1,206 @@
+<h1>Topic List</h1>
+<div class="d-flex justify-content-end mb-2">
+  <button (click)="toggleLiveCreateModel()" class="btn btn-success" i18n="@@create">Create</button>
+</div>
+<app-data-table [data]="pageInformation"
+(changePageIndex)="onPageIndexChange($event)" (changePageSize)="onPageSizeChange($event)">
+<thead class="text-nowrap text-truncate">
+  <tr>
+    <th scope="col" i18n="@@thSTT">STT</th>
+    <th scope="col">Image</th>
+    <th scope="col">NameEn</th>
+    <th scope="col">NameVN</th>
+    <th scope="col" i18n="@@thActive">Active</th>
+    <th scope="col">Priority</th>
+    <th scope="col">Show In Home Page</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let item of data.items; index as i ">
+        <td>{{ i+1 }}</td>
+        <td>
+          <ng-container *ngIf="item.avatar">
+            <img [src]="baseUrl+item.avatar" alt="image" class="img-thumbnail">
+          </ng-container>
+        <td>{{ item.nameEN }}</td>
+        <td>{{ item.nameVN }}</td>
+        <td>{{ item.isActive }}</td>
+        <td>{{ item.priority }}</td>
+        <td>{{ item.inHomePage }}</td>
+        <td>
+          <div class="d-flex justify-content-end">
+            <button (click)="updateData(item.id)" class="btn btn-primary me-2">Update</button>
+            <button (click)="deleteData(item.id)" class="btn btn-danger" i18n="@@delete">Delete</button>
+          </div>
+        </td>
+    </tr>
+</tbody>
+</app-data-table>
+
+<!-- Create Modal -->
+<c-modal backdrop="static" [visible]="visibleCreateModal" (visibleChange)="handleLiveCreateModelChange($event)" id="verticallyCenteredCreateModal" size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Create Topic</h5>
+    <button (click)="toggleLiveCreateModel()" cButtonClose></button>
+  </c-modal-header>
+  <form cForm [formGroup]="createForm" (ngSubmit)="onSubmitCreateForm()">
+    <c-modal-body>
+      <div class="mb-2 d-flex flex-row">
+        <c-form-check class="me-2 d-flex align-items-center">
+          <input cFormCheckInput formControlName="isActive" id="isActive" class="me-2" type="checkbox" />
+          <label cFormCheckLabel for="isActive" class="me-2" i18n="@@active">Active </label>
+        </c-form-check>
+        <c-form-check class="me-2 d-flex align-items-center">
+          <input cFormCheckInput formControlName="inHomePage" id="inHomePage"  class="me-2" type="checkbox" />
+          <label cFormCheckLabel for="inHomePage" class="me-2" i18n="@@active">Show In Home Page </label>
+        </c-form-check>
+        <div>
+          <label for="priority" class="me-2">Priority: </label>
+          <input formControlName="priority" type="number" class="me-2 number-control">
+          <div *ngIf="priorityCreateForm?.invalid && (priorityCreateForm?.dirty || priorityCreateForm?.touched)" class="text-danger">
+            <div *ngIf="priorityCreateForm?.hasError('min') || priorityCreateForm?.hasError('max')">
+              Priority must be between 1 and 100.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-2 row">
+        <div class="col-6">
+          <label cLabel for="nameEN" class="me-2">NameEN: <span class="text-danger">(*)</span> </label>
+          <input cFormControl formControlName="nameEN">
+          <div *ngIf="nameENCreateForm?.invalid && (nameENCreateForm?.dirty || nameENCreateForm?.touched)" class="text-danger">
+            <div *ngIf="nameENCreateForm?.hasError('required')">
+              NameEN is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <label cLabel for="nameVN">NameVN: <span class="text-danger">(*)</span></label>
+          <input cFormControl formControlName="nameVN">
+          <div *ngIf="nameVNCreateForm?.invalid && (nameVNCreateForm?.dirty || nameVNCreateForm?.touched)" class="text-danger">
+            <div *ngIf="nameVNCreateForm?.hasError('required')">
+              NameVN is required.
+            </div>
+          </div>
+        </div>
+        <div class="mb-2">
+          <label cLabel for="note">Note: </label>
+          <textarea cFormControl formControlName="note" rows="3"></textarea>
+          <div *ngIf="noteCreateForm?.invalid && (noteCreateForm?.dirty || noteCreateForm?.touched)" class="text-danger">
+            <div *ngIf="noteCreateForm?.hasError('maxlength')">
+              Maximum 500 characters.
+            </div>
+          </div>
+        </div>
+        <div class="mb-2">
+          <label cLabel for="note">Upload Logo:</label>
+          <input class="d-none"  id="createUploadImage" type="file"  accept="image/*" (change)="onChangeUploadImage($event,'create')" />
+          <div class="mt-2 reviewImage" (click)="openFileInput('create')">
+            <ng-container *ngIf="!reviewCreateUploadImage">
+              <svg [cIcon]="icons.cilCloudUpload" width="140" title="Shield Icon"></svg>
+            </ng-container>
+            <div  *ngIf="reviewCreateUploadImage" [innerHTML]="reviewCreateUploadImage" class="w-100 h-100 d-flex justify-content-center align-items-center"></div>
+          </div>
+        </div>
+      </div>
+    </c-modal-body>
+    <c-modal-footer>
+      <button (click)="toggleLiveCreateModel()" cButton color="secondary" i18n="@@close">
+        Close
+      </button>
+      <button cButton type="submit" [disabled]="!createForm.valid" color="primary">Save</button>
+    </c-modal-footer>
+  </form>
+</c-modal>
+<!--Update Model-->
+<c-modal backdrop="static" [visible]="visibleUpdateModal" (visibleChange)="handleLiveUpdateModelChange($event)" id="verticallyCenteredUpdateModal" size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Update Topic</h5>
+    <button (click)="toggleLiveUpdateModel()" cButtonClose></button>
+  </c-modal-header>
+  <form cForm [formGroup]="updateForm" (ngSubmit)="onSubmitUpdateForm()">
+    <c-modal-body>
+      <div class="mb-2 d-flex flex-row">
+        <c-form-check class="me-2 d-flex align-items-center">
+          <input cFormCheckInput formControlName="isActive" id="isActive1" class="me-2" type="checkbox" />
+          <label cFormCheckLabel for="isActive1" class="me-2" i18n="@@active">Active </label>
+        </c-form-check>
+        <c-form-check class="me-2 d-flex align-items-center">
+          <input cFormCheckInput formControlName="inHomePage" id="inHomePage1" class="me-2" type="checkbox" />
+          <label cFormCheckLabel for="inHomePage1" class="me-2" >Show In Home Page </label>
+        </c-form-check>
+        <div>
+          <label for="priority" class="me-2">Priority: </label>
+          <input formControlName="priority" type="number" class="me-2 number-control">
+          <div *ngIf="priorityUpdateForm?.invalid && (priorityUpdateForm?.dirty || priorityUpdateForm?.touched)" class="text-danger">
+            <div *ngIf="priorityUpdateForm?.hasError('min') || priorityUpdateForm?.hasError('max')">
+              Priority must be between 1 and 9999.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-2 row">
+        <div class="col-6">
+          <label cLabel for="nameEN" class="me-2">NameEN: <span class="text-danger">(*)</span> </label>
+          <input cFormControl formControlName="nameEN">
+          <div *ngIf="nameENUpdateForm?.invalid && (nameENUpdateForm?.dirty || nameENUpdateForm?.touched)" class="text-danger">
+            <div *ngIf="nameENUpdateForm?.hasError('required')">
+              NameEN is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <label cLabel for="nameVN">NameVN: <span class="text-danger">(*)</span></label>
+          <input cFormControl formControlName="nameVN">
+          <div *ngIf="nameVNUpdateForm?.invalid && (nameVNUpdateForm?.dirty || nameVNUpdateForm?.touched)" class="text-danger">
+            <div *ngIf="nameVNUpdateForm?.hasError('required')">
+              NameVN is required.
+            </div>
+          </div>
+        </div>
+        <div class="mb-2">
+          <label cLabel for="note">Note: </label>
+          <textarea cFormControl formControlName="note" rows="3"></textarea>
+          <div *ngIf="noteUpdateForm?.invalid && (noteUpdateForm?.dirty || noteUpdateForm?.touched)" class="text-danger">
+            <div *ngIf="noteUpdateForm?.hasError('maxlength')">
+              Maximum 500 characters.
+            </div>
+          </div>
+        </div>
+        <div class="mb-2">
+          <label cLabel for="note">Upload Logo:</label>
+          <input class="d-none"  id="updateUploadImage" type="file"  accept="image/*" (change)="onChangeUploadImage($event,'update')" />
+          <div class="mt-2 reviewImage" (click)="openFileInput('update')">
+            <ng-container *ngIf="!reviewUpdateUploadImage">
+              <svg [cIcon]="icons.cilCloudUpload" width="140" title="Shield Icon"></svg>
+            </ng-container>
+            <div  *ngIf="reviewUpdateUploadImage" [innerHTML]="reviewUpdateUploadImage" class="w-100 h-100 d-flex justify-content-center align-items-center"></div>
+          </div>
+        </div>
+      </div>
+    </c-modal-body>
+    <c-modal-footer>
+      <button (click)="toggleLiveUpdateModel()" cButton color="secondary" i18n="@@close">
+        Close
+      </button>
+      <button cButton type="submit" [disabled]="!updateForm.valid" color="primary">Save</button>
+    </c-modal-footer>
+  </form>
+</c-modal>
+<!--Delete Model-->
+<c-modal backdrop="static"  [visible]="visibleDelete" (visibleChange)="handleLiveDeleteChange($event)" id="verticallyCenteredDelete">
+  <c-modal-header>
+    <h5 cModalTitle>Confirmation</h5>
+    <button (click)="toggleLiveDelete()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <p>Are you sure you want to delete this category?</p>
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="toggleLiveDelete()" cButton color="secondary">
+      Close
+    </button>
+    <button cButton color="primary">Confirm</button>
+  </c-modal-footer>
+</c-modal>

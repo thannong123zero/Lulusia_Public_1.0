@@ -1,0 +1,39 @@
+<h1>Order List</h1>
+<div class="d-flex justify-content-between my-2">
+    <!-- <div class="d-flex align-items-center">
+        <span class="me-2" i18n="@@filter">Filter: </span>
+        <select class="form-control" id="slideTheme" cSelect (change)="filter($event)">
+          <option value="-1" i18n="@@all">All</option>
+          <option *ngFor="let item of topicList" [value]="item.id">{{ item.nameEN }}</option>
+        </select>
+      </div> -->
+</div>
+<c-card class="mb-4">
+  <c-card-header i18n="@@dataTable">Data table</c-card-header>
+  <c-card-body>
+    <table [hover]="true" [responsive]="true" [striped]="true" align="middle" cTable class="mb-0">
+      <thead class="text-nowrap text-truncate">
+        <tr>
+          <th scope="col" i18n="@@thSTT">STT</th>
+          <th scope="col">NameEn</th>
+          <th scope="col">NameVN</th>
+          <th scope="col" i18n="@@thActive">Active</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let item of productList; index as i ">
+              <td>{{ i+1 }}</td>
+              <td>{{ item.nameEN }}</td>
+              <td>{{ item.nameVN }}</td>
+              <td>{{ item.isActive }}</td>
+              <td>
+                <div class="d-flex justify-content-end">
+                  <button routerLink="./update" class="btn btn-primary me-2">Update</button>
+                </div>
+              </td>
+          </tr> -->
+      </tbody>
+    </table>
+  </c-card-body>
+</c-card>

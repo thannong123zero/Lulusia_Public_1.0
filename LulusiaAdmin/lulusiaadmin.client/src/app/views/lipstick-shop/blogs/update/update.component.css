@@ -1,0 +1,12 @@
+.reviewImage {
+  border: 1px solid #c1c1c1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  max-width: 300px;
+}
+.reviewImage img {
+  max-height: 150px;
+  max-width: 100%;
+}/*# sourceMappingURL=update.component.css.map */

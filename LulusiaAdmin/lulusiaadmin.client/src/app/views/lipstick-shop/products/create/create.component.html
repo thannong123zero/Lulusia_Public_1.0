@@ -1,0 +1,178 @@
+<h1>Create Product</h1>
+<c-card>
+    <c-card-body>
+        <form cForm [formGroup]="createForm" (ngSubmit)="onSubmit()">
+            <div class="d-flex mb-2">
+                
+                <div class="me-2">
+                    <c-form-check>
+                        <input cFormCheckInput formControlName="isActive" id="isActive" type="checkbox" class="me-2" />
+                        <label cFormCheckLabel for="isActive" >Active</label>
+                    </c-form-check>
+                </div>
+                <div>
+                    <c-form-check>
+                        <input cFormCheckInput formControlName="saleOff" id="saleOff" type="checkbox" (change)="onChangeSaleOff($event)" class="me-2" />
+                        <label cFormCheckLabel for="saleOff">Sale Off</label>
+                    </c-form-check>
+                </div>
+            </div>
+            <div class="mb-2 row" *ngIf="saleOff">
+                <div class="col-3">
+                    <label cLabel for="discountPercent">Discount Percent: <span class="text-danger">(*)</span></label>
+                    <input cFormControl formControlName="discountPercent" type="text" />
+                    <!-- <div *ngIf="discountPercent?.invalid && (nameEN?.dirty || nameEN?.touched)" class="text-danger">
+                        <div *ngIf="nameEN?.hasError('required')">
+                            Enter nameEN, please!
+                        </div>
+                    </div> -->
+                </div>
+                <div class="col-3">
+                    <label cLabel for="salePrice">Sale Price: <span class="text-danger">(*)</span></label>
+                    <input cFormControl formControlName="salePrice" type="text" />
+                </div>
+                <div class="col-3">
+                    <label cLabel for="nameVN">Start Discount Date: <span class="text-danger">(*)</span></label>
+                    <input cFormControl formControlName="nameVN" type="date" />
+                    <!-- <div *ngIf="nameVN?.invalid && (nameVN?.dirty || nameVN?.touched)" class="text-danger">
+                        <div *ngIf="nameVN?.hasError('required')">
+                            Enter nameVN, please!
+                        </div>
+                    </div> -->
+                </div>
+                <div class="col-3">
+                    <label cLabel for="endDiscountDate">End Discount Date: <span class="text-danger">(*)</span></label>
+                    <input cFormControl formControlName="endDiscountDate" type="date" />
+                    <!-- <div *ngIf="nameVN?.invalid && (nameVN?.dirty || nameVN?.touched)" class="text-danger">
+                        <div *ngIf="nameVN?.hasError('required')">
+                            Enter nameVN, please!
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <div class="col-6">
+                    <label cLabel for="categoryId">Select Category: <span class="text-danger">(*)</span></label>
+                    <select cFormControl formControlName="categoryId" cSelect (change)="onChangeCategory($event)">
+                        <option value="-1">Select a category</option>
+                        <option *ngFor="let item of categories" [value]="item.id">{{ item.nameEN }}
+                        </option>
+                    </select>
+                    <div *ngIf="categoryId?.invalid && (categoryId?.dirty || categoryId?.touched)" class="text-danger">
+                        <div *ngIf="categoryId?.hasError('min')">
+                            Select category, please!
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label cLabel for="subCategoryId">Select SubCategory: <span class="text-danger">(*)</span></label>
+                    <select cFormControl formControlName="subCategoryId" cSelect>
+                        <option value="-1">Select a subcategory</option>
+                        <option *ngFor="let item of subCategories" [value]="item.id">{{ item.nameEN }}
+                        </option>
+                    </select>
+                    <div *ngIf="subCategoryId?.invalid && (subCategoryId?.dirty || subCategoryId?.touched)" class="text-danger">
+                        <div *ngIf="subCategoryId?.hasError('min')">
+                            Select sub-category, please!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <div class="col-3">
+                    <label cLabel>Upload avatar: <span class="text-danger">(*)</span></label>
+                    <input class="d-none"  id="uploadAvatar" type="file"  accept="image/*" (change)="onChangeUploadImageFile($event,'avatar')" />
+                    <div class="mt-2 reviewImage" (click)="openFileInput('uploadAvatar')">
+                      <ng-container *ngIf="!reviewUploadAvatar">
+                        <svg [cIcon]="icons.cilCloudUpload" width="140" title="Shield Icon"></svg>
+                      </ng-container>
+                      <div  *ngIf="reviewUploadAvatar" [innerHTML]="reviewUploadAvatar" class="w-100 h-100 d-flex justify-content-center align-items-center"></div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <label cLabel>Upload backgound: <span class="text-danger">(*)</span></label>
+                    <input class="d-none"  id="uploadBackgound" type="file"  accept="image/*" (change)="onChangeUploadImageFile($event,'background')" />
+                    <div class="mt-2 reviewImage" (click)="openFileInput('uploadBackgound')">
+                      <ng-container *ngIf="!reviewUploadBackGroundImage">
+                        <svg [cIcon]="icons.cilCloudUpload" width="140" title="Shield Icon"></svg>
+                      </ng-container>
+                      <div  *ngIf="reviewUploadBackGroundImage" [innerHTML]="reviewUploadBackGroundImage" class="w-100 h-100 d-flex justify-content-center align-items-center"></div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label cLabel>Upload list iamge: <span class="text-danger">(*)</span></label>
+                    <input class="d-none"  id="uploadImages" type="file"  multiple accept="image/*" (change)="onChangeUploadImageFiles($event)" />
+                    <div class="mt-2 reviewImage" (click)="openFileInput('uploadImages')">
+                      <ng-container *ngIf="!reviewUploadImages">
+                        <svg [cIcon]="icons.cilCloudUpload" width="140" title="Shield Icon"></svg>
+                      </ng-container>
+                      <div  *ngIf="reviewUploadImages" [innerHTML]="reviewUploadImages" class="w-100 h-100 d-flex justify-content-center align-items-center"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <div class="col-6">
+                    <label cLabel for="nameEN">NameEN: <span class="text-danger">(*)</span></label>
+                    <input cFormControl formControlName="nameEN" type="text" />
+                    <div *ngIf="nameEN?.invalid && (nameEN?.dirty || nameEN?.touched)" class="text-danger">
+                        <div *ngIf="nameEN?.hasError('required')">
+                            Enter NameEN, please!
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label cLabel for="nameVN">NameVN: <span class="text-danger">(*)</span></label>
+                    <input cFormControl formControlName="nameVN" type="text" />
+                    <div *ngIf="nameVN?.invalid && (nameVN?.dirty || nameVN?.touched)" class="text-danger">
+                        <div *ngIf="nameVN?.hasError('required')">
+                            Enter NameVN, please!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <div class="col-6">
+                    <label cLabel for="descriptionEN">DescriptionEN: <span class="text-danger">(*)</span></label>
+                    <textarea cFormControl formControlName="descriptionEN" rows="3"></textarea>
+                    <div *ngIf="descriptionEN?.invalid && (descriptionEN?.dirty || descriptionEN?.touched)"
+                        class="text-danger">
+                        <div *ngIf="descriptionEN?.hasError('required')">
+                            Enter descriptionEN, please!
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label cLabel for="descriptionVN">DescriptionVN: <span class="text-danger">(*)</span></label>
+                    <textarea cFormControl formControlName="descriptionVN" rows="3"></textarea>
+                    <div *ngIf="descriptionVN?.invalid && (descriptionVN?.dirty || descriptionVN?.touched)"
+                        class="text-danger">
+                        <div *ngIf="descriptionVN?.hasError('required')">
+                            Enter descriptionVN, please!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <div class="col-6">
+                    <label cLabel for="detailsEN">ContentEN: <span class="text-danger">(*)</span></label>
+                    <app-ckeditor (result)="composeText($event,'EN')" />
+
+                    <!-- <textarea cFormControl formControlName="contentEN" rows="3"></textarea> -->
+                </div>
+                <div class="col-6">
+                    <label cLabel for="detailsVN">ContentVN: <span class="text-danger">(*)</span></label>
+                    <app-ckeditor (result)="composeText($event,'VN')" />
+
+                    <!-- <textarea cFormControl formControlName="contentVN" rows="3"></textarea> -->
+                </div>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button cButton type="submit" type="submit" [disabled]="!createForm.valid"
+                    i18n="@@submit">Submit</button>
+                <button cButton type="button" routerLink="/lipstick-shop/blogs" class="ms-2 btn-info"
+                    i18n="@@backToList">Back
+                    to list</button>
+            </div>
+        </form>
+    </c-card-body>
+</c-card>

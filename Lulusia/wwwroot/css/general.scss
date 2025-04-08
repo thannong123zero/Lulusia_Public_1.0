@@ -1,0 +1,174 @@
+﻿@import "VariableGlobal.scss";
+
+/*#region text-color*/
+.text-color-white{
+    color: $color_white_fff;
+}
+.text-color-black{
+    color: $color_black_1e1e1e;
+}
+.text-color-red{
+    color: $color_red_FF4141;
+}
+.text-color-pink {
+    color: $color_pink_e72f8b;
+}
+/*#endregion*/
+
+/*#region text-style*/
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+/*#endregion*/
+
+/*#region font-weight*/
+.font-weight-300{
+    font-weight: 300;
+}
+.font-weight-500 {
+    font-weight: 500;
+}
+.font-weight-600 {
+    font-weight: 600;
+}
+.font-weight-700 {
+    font-weight: 700;
+}
+/*#endregion*/
+
+/*#region font-family*/
+.font-regular {
+    font-family: "Tinos Regular";
+}
+.font-italic {
+    font-family: "Tinos Italic";
+}
+.font-blod {
+    font-family: "Tinos Blod";
+}
+/*#endregion*/
+
+/*#region font-size */
+.text-11 {
+    font-size: 11px;
+}
+.text-12 {
+    font-size: 12px;
+}
+.text-14 {
+    font-size: 14px;
+}
+.text-16 {
+    font-size: 16px;
+}
+.text-18 {
+    font-size: 18px;
+}
+.text-20 {
+    font-size: 20px;
+}
+.text-22 {
+    font-size: 22px;
+}
+.text-24 {
+    font-size: 24px;
+}
+.text-26 {
+    font-size: 26px;
+}
+.text-28 {
+    font-size: 28px;
+}
+.text-30 {
+    font-size: 30px;
+}
+.text-32 {
+    font-size: 32px;
+}
+.text-34 {
+    font-size: 34px;
+}
+.text-38 {
+    font-size: 38px;
+}
+@include respond(map-get($breakPoint,"md")) {
+    
+}
+/*#endregion*/
+
+/*#region button*/
+.button-white-border{
+    color: $color_white_fff;
+    border-block-color: $color_white_fff;
+    border: 2px solid;
+    background-color: transparent;
+    padding: 4px 6px;
+}
+.button-pink {
+    color: $color_white_fff;
+    background-color: $color_pink_e72f8b;
+    padding: 4px 6px;
+}
+.button-red {
+    color: $color_white_fff;
+    background-color: $color_red_FF4141;
+    border-block-color: $color_white_fff;
+    border: 1px solid;
+    padding: 4px 6px;
+}
+/*#endregion*/
+
+/*#region summary*/
+.is-divider {
+    height: 3px;
+    display: block;
+    background-color: #E5E5E5;
+    margin: 1em 0;
+    width: 100%;
+    max-width: 30px;
+}
+.opacity-30 {
+    opacity: 0.3;
+}
+.div-line {
+    width: 100%;
+    height: 2px;
+    background-color: $color_black_000000;
+}
+/*#endregion*/
+
+/*#region custom-library*/
+.accordion-button:not(.collapsed) {
+    color: $color_black_000000;
+    font-weight: 600;
+    background: unset;
+}
+.accordion-button:focus{
+    box-shadow: unset;
+}
+
+.customCarousel .owl-nav {
+    display: none;
+}
+
+.customCarousel .owl-dots {
+    margin-top: 10px;
+}
+.icon{
+    width: 25px;
+}
+
+.page-container {
+    max-width: $maxWidthContent;
+    min-height: 300px;
+    margin: auto;
+}
+/*#endregion*/

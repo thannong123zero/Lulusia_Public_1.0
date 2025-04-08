@@ -1,0 +1,7 @@
+:host #exampleColorInput {
+  min-width: 2.5rem;
+}
+:host .color-box {
+  min-width: 2rem;
+  min-height: 2rem;
+}/*# sourceMappingURL=form-controls.component.css.map */

@@ -1,0 +1,13 @@
+﻿@model InforPageClientViewModel
+@{
+    ViewData["Title"] = "Privacy Policy Page";
+}
+@if (Model != null)
+{
+    <div class="page-container my-4">
+        <h1 class="text-center font-weight-600 text-uppercase">@Model.Title</h1>
+        <div>
+            @Html.Raw(Model.Content)
+        </div>
+    </div>
+}

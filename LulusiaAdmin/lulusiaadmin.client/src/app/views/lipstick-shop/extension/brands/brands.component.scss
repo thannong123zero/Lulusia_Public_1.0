@@ -1,0 +1,17 @@
+.reviewImage{
+    border: 1px solid #c1c1c1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 30%;
+    img{
+        max-height: 150px;
+        max-width: 30%;
+
+    }
+}
+.img-thumbnail{
+    width: 60px;
+    height: auto;
+}

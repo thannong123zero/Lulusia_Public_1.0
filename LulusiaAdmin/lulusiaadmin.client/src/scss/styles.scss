@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles with default layout.
+@import "@coreui/coreui/scss/coreui";
+
+// Import Chart.js custom tooltips styles
+@import "@coreui/chartjs/scss/coreui-chartjs";
+
+// Custom styles for this theme
+@import "theme";
+
+// Some temp fixes
+//@import "fixes";
+
+// If you want to add custom CSS you can put it here.
+@import "custom";
+
+// Examples
+// We use those styles to show code examples, you should remove them in your application.
+@import "examples";
+
+@import 'ckeditor5/ckeditor5.css';
+
+@import "login";
+
+.priorityInput{
+    max-width: 80px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--cui-body-color);
+    appearance: none;
+    background-color: var(--cui-body-bg);
+    background-clip: padding-box;
+    border: var(--cui-border-width) solid var(--cui-border-color);
+    border-radius: var(--cui-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.priorityInput:focus{
+    color: var(--cui-body-color);
+    background-color: var(--cui-body-bg);
+    border-color: rgb(171.5, 170.5, 234.5);
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(88, 86, 214, 0.25)
+}

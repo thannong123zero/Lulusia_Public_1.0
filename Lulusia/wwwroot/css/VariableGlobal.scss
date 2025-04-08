@@ -1,0 +1,99 @@
+﻿/*#region width*/
+$maxWidthContent: 1050px;
+$maxWidthFooterContent: 1080px;
+$maxWidthHomeBanner: 1050px;
+$maxHieghtBanner: 400px;
+
+$maxWidthContent_LG: 95%;
+$maxWidthFooterContent_LG: 95%;
+$maxWidthHomeBanner_LG: 95%;
+$maxHieghtBanner_LG: 95%;
+
+$maxWidthContent_MD: 95%;
+$maxWidthFooterContent_MD: 95%;
+$maxWidthHomeBanner_MD: 100%;
+$maxHieghtBanner_MD: 95%;
+
+/*#endregion*/
+
+/*#region color*/
+$color_black_1e1e1e: #1e1e1e;
+$color_black_000000: #000000;
+$color_white_fff: #fff;
+$color_pink_e72f8b: #e72f8b;
+$color_red_FF4141: #FF4141;
+/*#endregion*/
+/*#region font-size*/
+$text-level-1: 60px;
+$text-level-2: 40px;
+$text-level-3: 30px;
+$text-level-4: 24px;
+$text-level-5: 23px;
+$text-level-6: 22px;
+$text-level-7: 21px;
+$text-level-8: 20px;
+$text-level-9: 19px;
+$text-level-10: 20px;
+$text-level-11: 15px;
+$text-level-12: 14px;
+$text-level-13: 13px;
+// text mobile
+$text-mb-level-1: 60px;
+$text-mb-level-2: 40px;
+$text-mb-level-3: 30px;
+$text-mb-level-4: 24px;
+$text-mb-level-5: 23px;
+$text-mb-level-6: 22px;
+$text-mb-level-7: 21px;
+$text-mb-level-8: 20px;
+$text-mb-level-9: 19px;
+$text-mb-level-10: 20px;
+$text-mb-level-11: 15px;
+$text-mb-level-12: 14px;
+$text-mb-level-13: 13px;
+/*#region*/
+
+/*#region responsive*/
+$breakPoint: ("xs":576px,"sm":768px, "md":992px,"lg":1200px,"xl":1400px);
+//trong boostrap theo tang dan
+//xs <576px
+//sm ≥576px
+//md ≥768px
+//lg ≥992px
+//xl ≥1200px
+//xxl ≥1400px
+//chung ta viet theo giam dan, vi chung ta thiet tu cho man hinh desktop va sau do reponsive xuong mobile
+//vi vay chung ta se ke thua cac thuoc tinh da viet
+@mixin respond($point) {
+    //thiet ke cho man hinh 0 -> 576px
+    @if $point == 576px {
+        @media only screen and (width < 576px) {
+            @content
+        }
+    }
+    //thiet ke cho man hinh 0 -> 768px
+    @if $point == 768px {
+        @media only screen and (width < 768px) {
+            @content
+        }
+    }
+    //thiet ke cho man hinh 0 -> 992px
+    @if $point == 992px {
+        @media only screen and (width < 992px) {
+            @content
+        }
+    }
+    //thiet ke cho man hinh 0 -> 1200px
+    @if $point == 1200px {
+        @media only screen and (width < 1200px) {
+            @content
+        }
+    }
+    //thiet ke cho man hinh 0 -> 1400px
+    @if $point == 1400px {
+        @media only screen and (width < 1400px) {
+            @content
+        }
+    }
+}
+/*#endregion*/

@@ -1,0 +1,10 @@
+﻿@model HomePageViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="homePage">
+    @if(Model != null){
+        @await Html.PartialAsync("~/Views/Shared/PartialViews/_HomeBannerPartialView.cshtml",Model)
+        @await Html.PartialAsync("~/Views/Shared/PartialViews/_HomeContentPartialView.cshtml", Model)
+    }
+</div>

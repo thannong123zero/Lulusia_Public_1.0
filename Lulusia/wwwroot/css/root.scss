@@ -1,0 +1,37 @@
+﻿@font-face {
+    font-family: "Tinos Regular";
+    font-style: normal;
+    src: url("/assets/fonts/Tinos/Tinos-Regular.ttf");
+}
+@font-face {
+    font-family: "Tinos Italic";
+    font-style: normal;
+    src: url("/assets/fonts/Tinos/Tinos-Italic.ttf");
+}
+@font-face {
+    font-family: "Tinos Blod";
+    font-style: normal;
+    src: url("/assets/fonts/Tinos/Tinos-BoldItalic.ttf");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    font-family: "Tinos Regular",sans-serif;
+}

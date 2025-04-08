@@ -1,0 +1,20 @@
+﻿@model IEnumerable<BrandClientViewModel>
+@{
+    ViewData["Title"] = "Brand Page";
+}
+@if (Model != null && Model.Count() > 0)
+{
+    <div class="page-container brandContainer my-4">
+       <div class="imageContainer">
+            @foreach (var item in Model)
+            {
+                <div class="boxImage">
+                    <a href="@Url.Action("Index", "Product", new { brandId = item.Id })">
+                        <img src="@item.AvatarUrl" alt="@item.Name" />
+                        <div class="text-center">@item.Name</div>
+                    </a>
+                </div>
+            }
+       </div>
+    </div>
+}

@@ -1,0 +1,71 @@
+<h1>Product List</h1>
+<c-accordion>
+  <c-accordion-item #item0="cAccordionItem" [visible]="true">
+    <ng-template cTemplateId="accordionHeaderTemplate">
+      <button (click)="item0.toggleItem()" [collapsed]="!item0.visible" cAccordionButton>
+        Filter:
+      </button>
+    </ng-template>
+    <ng-template cTemplateId="accordionBodyTemplate">
+      <div class="accordion-body">
+        <div class="row">
+          <div class="col-10">
+
+          </div>
+          <div class="col-2 justify-content-end d-flex">
+            <button routerLink="./create" class="btn btn-success" i18n="@@create">Create</button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </c-accordion-item>
+</c-accordion>
+
+
+<c-card class="mb-4 mt-4">
+  <c-card-header i18n="@@dataTable">Data table</c-card-header>
+  <c-card-body>
+    <table [hover]="true" [responsive]="true" [striped]="true" align="middle" cTable class="mb-0">
+      <thead class="text-nowrap text-truncate">
+        <tr>
+          <th scope="col" i18n="@@thSTT">STT</th>
+          <th scope="col">NameEn</th>
+          <th scope="col">NameVN</th>
+          <th scope="col" i18n="@@thActive">Active</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of productList; index as i ">
+              <td>{{ i+1 }}</td>
+              <!-- <td>{{ item.nameEN }}</td>
+              <td>{{ item.nameVN }}</td>
+              <td>{{ item.isActive }}</td> -->
+              <td>
+                <div class="d-flex justify-content-end">
+                  <button routerLink="./update" class="btn btn-primary me-2">Update</button>
+                  <button (click)="deleteData(item.id)" class="btn btn-danger" i18n="@@delete">Delete</button>
+                </div>
+              </td>
+          </tr>
+      </tbody>
+    </table>
+  </c-card-body>
+</c-card>
+
+<!--Delete Model-->
+<c-modal backdrop="static"  [visible]="visibleDelete" (visibleChange)="handleLiveDeleteChange($event)" id="verticallyCenteredDelete">
+  <c-modal-header>
+    <h5 cModalTitle>Confirmation</h5>
+    <button (click)="toggleLiveDelete()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <p>Are you sure you want to delete this category?</p>
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="toggleLiveDelete()" cButton color="secondary">
+      Close
+    </button>
+    <button cButton color="primary">Confirm</button>
+  </c-modal-footer>
+</c-modal>

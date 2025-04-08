@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { SizesComponent } from './sizes.component';
+
+describe('SizesComponent', () => {
+  let component: SizesComponent;
+  let fixture: ComponentFixture<SizesComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [SizesComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(SizesComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

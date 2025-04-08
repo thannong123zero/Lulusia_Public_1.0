@@ -1,0 +1,147 @@
+﻿@{
+    ViewData["Title"] = "Productions Page";
+    IEnumerable<CategoryClientViewModel>? categories = ViewBag.Categories as IEnumerable<CategoryClientViewModel>;
+}
+
+<div class="productPage my-3">
+    <div class="filter d-flex flex-row justify-content-between">
+        <p class="m-0">TRANG CHỦ / CỬA HÀNG / SẢN PHẨM</p>
+        <select>
+            <option selected>Bộ lọc</option>
+            <option value="1">Mới nhất</option>
+            <option value="2">Gía tăng dần</option>
+            <option value="3">Gía giảm dần</option>
+        </select>
+    </div>
+    <div class="row mt-4">
+        <div class="categories col-lg-3 d-none d-lg-block">
+            <h3>Danh Mục Sản Phẩm</h3>
+            <div class="accordion" id="accordionExample">
+                @if (categories != null)
+                {
+                    int index = 0;
+                    foreach (var category in categories)
+                    {
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne_@category.Id">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne_@category.Id" aria-expanded="@(index == 0 ? true:false)" aria-controls="collapseOne_@category.Id">
+                                    @category.Name
+                                </button>
+                            </h2>
+                            <div id="collapseOne_@category.Id" class="accordion-collapse collapse @(index == 0 ? "show":"")" aria-labelledby="headingOne_@category.Id" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <ul>
+                                        @foreach (var subCategory in category.SubCategories)
+                                        {
+                                            <li>@subCategory.Name</li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        index++;
+                    }
+                }
+                @* <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Chăm Sóc Cơ Thể
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Sữa Tắm</li>
+                                <li>Xà Phòng Thơm</li>
+                                <li>Lăn Khử Mùi</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Chăm Sóc Da
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Sữa Rửa Mặt</li>
+                                <li>Tẩy Tế Bào Chết</li>
+                                <li>Tẩy Trắng</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Son Môi
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>KIKO</li>
+                                <li>GUCCI</li>
+                                <li>ILIA</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> *@
+            </div>
+        </div>
+        <div class="productList col-12 col-lg-9">
+            <div class="row">
+                @for (int i = 0; i < 8; i++)
+                {
+                    <div class="col-3 mb-4">
+                        <div class="item">
+                            <div class="coupon text-14">
+                                @_language.Getkey("discount") 10%
+                            </div>
+                            <div class="addToCart">
+                                <span class="ti-shopping-cart-full"></span>
+                            </div>
+                            <img src="~/assets/images/christianlouboutin-rougelouboutin-velvet-matte-247x300.jpg" class="showImg w-100" alt="item" />
+                            <img src="~/assets/images/christianlouboutin-rougelouboutin-velvet-matte-1-247x300.jpg" class="showImgHover w-100" alt="item" />
+
+                            <div class="text-center text-14 font-weight-600 text-color-white bg-dark">
+                                Mua Ngay!
+                            </div>
+                            <div class="itemInfor">
+                                <p class="font-weight-600 text-16 ">SON GUCCI</p>
+                                <a asp-action="index" asp-controller="productDetails" asp-route-ID="abc">
+                                    <p class="nameProduction font-italic">Son Gucci Màu 25 Goldie Red Matte Đỏ Cổ Điển Hot Nhất</p>
+                                </a>
+                                <p><span class="priceOld text-14 font-weight-600"><s>1.999.999VND</s></span> <span class="discount text-14 font-weight-600">999.999VND</span></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+            <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link text-color-black" href="#">Previous</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-color-pink font-weight-600" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-color-black" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-color-black" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text-color-black" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

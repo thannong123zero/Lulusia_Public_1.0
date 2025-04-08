@@ -1,0 +1,48 @@
+[
+  {
+    "Key": "FacebookLink",
+    "EN": "https://www.facebook.com/profile.php?id=100004477336765",
+    "VN": "https://www.facebook.com/profile.php?id=100004477336765"
+  },
+  {
+    "Key": "InstagramLink",
+    "EN": "https://www.instagram.com/thannong123zero/",
+    "VN": "https://www.instagram.com/thannong123zero/"
+  },
+  {
+    "Key": "GithubLink",
+    "EN": "https://github.com/thannong123zero",
+    "VN": "https://github.com/thannong123zero"
+  },
+  {
+    "Key": "YoutubeLink",
+    "EN": "https://www.youtube.com/@WilliamIT2000",
+    "VN": "https://www.youtube.com/@WilliamIT2000"
+  },
+  {
+    "Key": "HostName",
+    "EN": "Lulusia.com",
+    "VN": "Lulusia.com"
+  },
+  {
+    "Key": "CompanyName",
+    "EN": "Vietnam Software Trading and Services Joint Stock Company",
+    "VN": "Công Ty Cổ Phần Thương Mại Và Dịch Vụ Phần Mềm Việt Nam"
+  },
+  {
+    "Key": "Address",
+    "EN": "123 Nguyen Dinh Chieu, District 3, Ho Chi Minh City",
+    "VN": "123 Nguyễn Đình Chiểu, Quận 3, Thành phố Hồ Chí Minh"
+  },
+  {
+    "Key": "PhoneNumber",
+    "EN": "070 4469 xxx",
+    "VN": "070 4469 xxx"
+  },
+  {
+    "Key": "Email",
+    "EN": "nguyenhoangtai2k@gmail.com",
+    "VN": "nguyenhoangtai2k@gmail.com"
+  }
+
+]

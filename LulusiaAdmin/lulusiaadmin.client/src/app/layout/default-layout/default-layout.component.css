@@ -1,0 +1,7 @@
+:host .ng-scrollbar {
+  --scrollbar-padding: 1px;
+  --scrollbar-size: 5px;
+  --scrollbar-thumb-color: var(--cui-gray-500, #999);
+  --scrollbar-thumb-hover-color: var(--cui-gray-400, #999);
+  --scrollbar-hover-size: calc(var(--scrollbar-size) * 1.5);
+}/*# sourceMappingURL=default-layout.component.css.map */

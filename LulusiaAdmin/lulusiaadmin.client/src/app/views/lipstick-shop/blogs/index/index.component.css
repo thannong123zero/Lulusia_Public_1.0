@@ -1,0 +1,21 @@
+.limit-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.reviewImage {
+  border: 1px solid #c1c1c1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  width: 30%;
+}
+.reviewImage img {
+  max-height: 150px;
+  max-width: 30%;
+}/*# sourceMappingURL=index.component.css.map */

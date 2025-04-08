@@ -1,0 +1,102 @@
+<h1>Page Type List</h1>
+<div class="d-flex justify-content-end my-2" *ngIf="enumList.length > 0">
+  <button (click)="toggleLiveCreateModel()" class="btn btn-success" i18n="@@create">Create</button>
+</div>
+<app-data-table [data]="pageInformation"
+(changePageIndex)="onPageIndexChange($event)" (changePageSize)="onPageSizeChange($event)">
+
+  <thead class="text-nowrap text-truncate">
+    <tr>
+      <th scope="col" i18n="@@thSTT">STT</th>
+      <th scope="col">Label</th>
+      <th scope="col">Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data.items; index as i ">
+          <td>{{ i+1 }}</td>
+          <td>{{ item.label }}</td>
+          <td>{{ item.name }}</td>
+          <td>
+            <div class="d-flex justify-content-end">
+              <button (click)="updateData(item.id)" class="btn btn-primary me-2">Update</button>
+            </div>
+          </td>
+      </tr>
+  </tbody>
+</app-data-table>
+
+<!-- Create Modal -->
+<c-modal backdrop="static" size="lg" scrollable [visible]="visibleCreateModal" (visibleChange)="handleLiveCreateModelChange($event)" id="verticallyCenteredCreateModal">
+  <c-modal-header>
+    <h5 cModalTitle>Create Information Page</h5>
+    <button (click)="toggleLiveCreateModel()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+      <form cForm [formGroup]="createForm" (ngSubmit)="onSubmitCreateForm()">
+      <div class="mb-2 row">
+        <div class="col-12 col-md-6">
+            <label cLabel for="label" class="me-2">Select Label: <span class="text-danger">(*)</span></label>
+            <select cFormControl formControlName="label" cSelect class="me-2">
+                <option value="" disabled>Select Label</option>
+              <option *ngFor="let item of enumList" [value]="item">{{ item }}</option>
+            </select>
+            <div *ngIf="labelCreateForm?.invalid && (labelCreateForm?.dirty || labelCreateForm?.touched)" class="text-danger">
+              <div *ngIf="labelCreateForm?.hasError('required')">
+                Page type is required.
+              </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <label cLabel for="name" class="me-2">Name: <span class="text-danger">(*)</span> </label>
+          <input cFormControl formControlName="name">
+          <div *ngIf="nameCreateForm?.invalid && (nameCreateForm?.dirty || nameCreateForm?.touched)" class="text-danger">
+            <div *ngIf="nameCreateForm?.hasError('required')">
+              TitleEN is required.
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    </c-modal-body>
+      <c-modal-footer>
+        <button (click)="toggleLiveCreateModel()" cButton color="secondary" i18n="@@close">
+          Close
+        </button>
+        <button cButton (click)="onSubmitCreateForm()" [disabled]="!createForm.valid" color="primary">Save</button>
+      </c-modal-footer>
+</c-modal>
+<!--Update Model-->
+<c-modal backdrop="static" size="lg"  scrollable  [visible]="visibleUpdateModal" (visibleChange)="handleLiveUpdateModelChange($event)" id="verticallyCenteredUpdateModal" size="lg">
+  <c-modal-header>
+    <h5 cModalTitle>Update SubCategory</h5>
+    <button (click)="toggleLiveUpdateModel()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+      <form cForm [formGroup]="updateForm" (ngSubmit)="onSubmitUpdateForm()">
+      
+        <div class="mb-2 row">
+          <div class="col-12 col-md-6">
+            <label cLabel for="label" class="me-2">Label: <span class="text-danger">(*)</span> </label>
+            <input cFormControl formControlName="label" readonly>
+          </div>
+          <div class="col-12 col-md-6">
+            <label cLabel for="name">Name: <span class="text-danger">(*)</span></label>
+            <input cFormControl formControlName="name">
+            <div *ngIf="nameUpdateForm?.invalid && (nameUpdateForm?.dirty || nameUpdateForm?.touched)" class="text-danger">
+              <div *ngIf="nameUpdateForm?.hasError('required')">
+                TitleVN is required.
+              </div>
+            </div>
+          </div>  
+        </div>
+    </form>
+    </c-modal-body>
+    <c-modal-footer>
+      <button (click)="toggleLiveUpdateModel()" cButton color="secondary" i18n="@@close">
+        Close
+      </button>
+      <button cButton (click)="onSubmitUpdateForm()" [disabled]="!updateForm.valid" color="primary">Save</button>
+    </c-modal-footer>
+</c-modal>

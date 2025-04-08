@@ -1,0 +1,112 @@
+<h1>Create Blog</h1>
+<c-card>
+    <c-card-body>
+        <form cForm [formGroup]="createForm" (ngSubmit)="onSubmit()">
+            <div class="mb-2">
+                <c-form-check>
+                    <input cFormCheckInput formControlName="isActive" id="isActive" type="checkbox" class="me-2" />
+                    <label cFormCheckLabel for="isActive" i18n="@@active">Active</label>
+                </c-form-check>
+            </div>
+            <div class="mb-2 row">
+                <div class="col-6">
+                    <label cLabel for="topicId">Select Topic: <span class="text-danger">(*)</span></label>
+                    <select cFormControl formControlName="topicId" cSelect>
+                        <option value="-1">Select a topic</option>
+                        <option *ngFor="let item of topicList" [value]="item.id">{{ item.nameEN }}
+                        </option>
+                    </select>
+                    <div *ngIf="topicId?.invalid && (topicId?.dirty || topicId?.touched)" class="text-danger">
+                        <div *ngIf="topicId?.hasError('min')">
+                            Select topic, please!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2">
+                <label cLabel>Upload avatar: <span class="text-danger">(*)</span></label>
+                <input class="d-none"  id="uploadImage" type="file"  accept="image/*" (change)="onChangeUploadImage($event)" />
+                <div class="mt-2 reviewImage" (click)="openFileInput()">
+                  <ng-container *ngIf="!reviewUploadImage">
+                    <svg [cIcon]="icons.cilCloudUpload" width="140" title="Shield Icon"></svg>
+                  </ng-container>
+                  <div  *ngIf="reviewUploadImage" [innerHTML]="reviewUploadImage" class="w-100 h-100 d-flex justify-content-center align-items-center"></div>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <div class="col-6">
+                    <label cLabel for="subjectEN">SubjectEn: <span class="text-danger">(*)</span></label>
+                    <input cFormControl formControlName="subjectEN" type="text" />
+                    <div *ngIf="subjectEN?.invalid && (subjectEN?.dirty || subjectEN?.touched)" class="text-danger">
+                        <div *ngIf="subjectEN?.hasError('required')">
+                            Enter subjectEN, please!
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label cLabel for="subjectVN">SubjectVN: <span class="text-danger">(*)</span></label>
+                    <input cFormControl formControlName="subjectVN" type="text" />
+                    <div *ngIf="subjectVN?.invalid && (subjectVN?.dirty || subjectVN?.touched)" class="text-danger">
+                        <div *ngIf="subjectVN?.hasError('required')">
+                            Enter subjectVN, please!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <div class="col-6">
+                    <label cLabel for="descriptionEN">DescriptionEN: <span class="text-danger">(*)</span></label>
+                    <textarea cFormControl formControlName="descriptionEN" rows="3"></textarea>
+                    <div *ngIf="descriptionEN?.invalid && (descriptionEN?.dirty || descriptionEN?.touched)"
+                        class="text-danger">
+                        <div *ngIf="descriptionEN?.hasError('required')">
+                            Enter descriptionEN, please!
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label cLabel for="descriptionVN">DescriptionVN: <span class="text-danger">(*)</span></label>
+                    <div *ngIf="descriptionVN?.invalid && (descriptionVN?.dirty || descriptionVN?.touched)"
+                        class="text-danger">
+                        <div *ngIf="descriptionVN?.hasError('required')">
+                            Enter descriptionVN, please!
+                        </div>
+                    </div>
+                    <textarea cFormControl formControlName="descriptionVN" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <div class="col-6">
+                    <label cLabel for="contentEN">ContentEN: <span class="text-danger">(*)</span></label>
+                    <div *ngIf="contentEN?.invalid && (contentEN?.dirty || contentEN?.touched)" class="text-danger">
+                        <div *ngIf="contentEN?.hasError('required')">
+                            Enter contentEN, please!
+                        </div>
+                    </div>
+
+                    <app-ckeditor (result)="composeText($event,'EN')" />
+
+                    <!-- <textarea cFormControl formControlName="contentEN" rows="3"></textarea> -->
+                </div>
+                <div class="col-6">
+                    <label cLabel for="contentVN">ContentVN: <span class="text-danger">(*)</span></label>
+                    <div *ngIf="contentVN?.invalid && (contentVN?.dirty || contentVN?.touched)" class="text-danger">
+                        <div *ngIf="contentVN?.hasError('required')">
+                            Enter contentVN, please!
+                        </div>
+                    </div>
+                    <app-ckeditor (result)="composeText($event,'VN')" />
+
+                    <!-- <textarea cFormControl formControlName="contentVN" rows="3"></textarea> -->
+                </div>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button cButton type="submit" type="submit" [disabled]="!createForm.valid"
+                    i18n="@@submit">Submit</button>
+                <button cButton type="button" routerLink="/lipstick-shop/blogs" class="ms-2 btn-info"
+                    i18n="@@backToList">Back
+                    to list</button>
+            </div>
+        </form>
+    </c-card-body>
+</c-card>

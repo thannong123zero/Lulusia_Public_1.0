@@ -1,0 +1,92 @@
+﻿@model HomePageViewModel
+<div class="homeBanner">
+    @if(Model.MainBanners!= null && Model.MainBanners.Count() > 0){
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                @{
+                    int numberOfMainBanner = Model.MainBanners.Count();
+                    for(int i = 0; i<numberOfMainBanner; i++){
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" @(i == 0 ? "" : "class=active aria-current=true") aria-label="Slide @i"></button>
+                    }
+                }
+            </div>
+            <div class="carousel-inner">
+                @{
+                    int index = 0;
+                    foreach(var item in Model.MainBanners){
+                        <div 
+                        class="carousel-item @(index == 0 ? "active":"")">
+                            <a href="@(item.RedirectUrl == null ? "#":item.RedirectUrl )">
+                                <div class="banner" style="background-image: url('@item.ImageUrl')">
+                                    <div class="@(index % 2 == 0 ? "effect-snow":"effect-sparkle")"></div>
+                                    <div class="bannerIntro">
+                                        <h3 class="text-color-white text-32 font-italic mb-2">@item.Subject</h3>
+                                        <div class="is-divider"></div>
+                                        <p class="text-color-white font-italic text-24 mb-1">@item.Description</p>
+                                        @if(item.Tags.Count > 0)
+                                        {
+                                            <div class="is-divider"></div>
+                                            <div class="d-flex justify-content-center">
+                                                @foreach (var tag in item.Tags)
+                                                {
+
+                                                    <button class="btn-tag">@tag</button>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        index++;
+                    }
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    }
+    @if (Model.SubBanners != null && Model.SubBanners.Any()){
+        var subBannersList = Model.SubBanners.ToList();
+        <div class="row my-3">
+            @if (subBannersList.Count > 0)
+            {                
+                <div class="col-3 position-relative">
+                    <div class="subBanner" style="background-image: url('@subBannersList[0].ImageUrl')"></div>
+                    <div class="subBanner1">
+                        <span class="fw-bold mb-1 text-uppercase">@subBannersList[0].Subject</span>
+                        <h4 class="fw-bold mb-1 text-uppercase">@subBannersList[0].Description</h4>
+                        <a href="@(subBannersList[0].RedirectUrl == null ? "#":subBannersList[0].RedirectUrl )"
+                           class="fw-bold text-uppercase">@_language.Getkey("viewNow")</a>
+                    </div> 
+                </div>
+            }
+            @if (subBannersList.Count > 1)
+            {
+                <div class="col-3 position-relative">
+                    <div class="subBanner" style="background-image: url('@subBannersList[1].ImageUrl')"></div>
+                    <div class="subBanner2">
+                        <div>@subBannersList[1].Subject</div>
+                        <a href="@(subBannersList[1].RedirectUrl == null ? "#":subBannersList[0].RedirectUrl )"
+                           class="fw-bold text-uppercase">@_language.Getkey("buyNow")</a>
+                    </div>
+                </div>
+            }
+            @if (subBannersList.Count > 2)
+            {
+                <div class="col-6 position-relative">
+                    <div class="subBanner" style="background-image: url('@subBannersList[2].ImageUrl')"></div>
+                    <div class="subBanner3">
+                        <div class="text-uppercase">@subBannersList[2].Subject</div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
