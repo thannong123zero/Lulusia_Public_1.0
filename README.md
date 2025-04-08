@@ -1,5 +1,7 @@
-**Public Source Version 1.0.0**
+**Public Source Version 1.0.0**https://github.com/thannong123zero/Lulusia_Public_1.0/blob/master/README.md
+
 Link Web Admin: [Here.](https://lulusia.com/)
+
 Link Web Client: [Here.](https://lulusia.vn/)
 
 **Technologies used in the project:**
