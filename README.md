@@ -22,8 +22,11 @@ Link Web Client: [Here.](https://lulusia.vn/)
 ![Screenshot 2025-04-08 110503](https://github.com/user-attachments/assets/a66bce8b-6828-470d-aaa5-92498a85c30b)
 
 **3. Generative AI Module (Coming)**
+
 **4. Chatbot AI Module (Coming)**
+
 **5. Survey Module (Coming)**
+
 **6. System Management Module (Developing)**
 ![Screenshot 2025-04-08 110825](https://github.com/user-attachments/assets/4a01b8a6-5550-4afd-b2cd-5e633de68a34)
 
