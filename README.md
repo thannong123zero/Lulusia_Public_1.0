@@ -1,5 +1,7 @@
 **Public Source Version 1.0.0**
-Link Youtobe: [Here.]([https://lulusia.com/](https://www.youtube.com/watch?v=SFgN0tedQ-g&t=599s&ab_channel=William))
+
+Link Youtobe: [Here.](https://www.youtube.com/watch?v=SFgN0tedQ-g&t=599s&ab_channel=William)
+
 Link Web Admin: [Here.](https://lulusia.com/)
 
 Link Web Client: [Here.](https://lulusia.vn/)
