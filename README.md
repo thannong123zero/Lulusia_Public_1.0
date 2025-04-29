@@ -1,6 +1,8 @@
 **Public Source Version 1.0.0**
 
-Link Youtobe: [Here.](https://www.youtube.com/watch?v=SFgN0tedQ-g&t=599s&ab_channel=William)
+Link Tasks: [Here.](https://docs.google.com/spreadsheets/d/13mTEGjO6YDyagEcSvZYBpjKU_bTfNjg47T6e4MstrSo/edit?gid=808001619#gid=808001619)
+
+Link Youtube: [Here.](https://www.youtube.com/watch?v=SFgN0tedQ-g&t=599s&ab_channel=William)
 
 Link Web Admin: [Here.](https://lulusia.com/)
 
